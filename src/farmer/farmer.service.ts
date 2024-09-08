@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateFarmerDto } from './dto/create-farmer.dto';
 import { UpdateFarmerDto } from './dto/update-farmer.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -8,6 +8,15 @@ export class FarmerService {
   constructor(private prisma: PrismaService) {}
 
   async create(createFarmerDto: CreateFarmerDto) {
+    if (
+      createFarmerDto.arableTotalArea + createFarmerDto.vegetationArea >
+      createFarmerDto.totalArea
+    ) {
+      throw new BadRequestException(
+        "The sum of arable area and vegetation area can't be greater than total area",
+      );
+    }
+
     return await this.prisma.farmer.create({ data: createFarmerDto });
   }
 
