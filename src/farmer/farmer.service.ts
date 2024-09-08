@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFarmerDto } from './dto/create-farmer.dto';
 import { UpdateFarmerDto } from './dto/update-farmer.dto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class FarmerService {
-  create(createFarmerDto: CreateFarmerDto) {
-    return 'This action adds a new farmer';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createFarmerDto: CreateFarmerDto) {
+    return await this.prisma.farmer.create({ data: createFarmerDto });
   }
 
-  findAll() {
-    return `This action returns all farmer`;
+  async findAll() {
+    return await this.prisma.farmer.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} farmer`;
+  async findOne(id: number) {
+    return await this.prisma.farmer.findUnique({ where: { id } });
   }
 
-  update(id: number, updateFarmerDto: UpdateFarmerDto) {
-    return `This action updates a #${id} farmer`;
+  async update(id: number, updateFarmerDto: UpdateFarmerDto) {
+    return await this.prisma.farmer.update({
+      data: updateFarmerDto,
+      where: { id },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} farmer`;
+  async remove(id: number) {
+    return await this.prisma.farmer.delete({ where: { id } });
   }
 }
