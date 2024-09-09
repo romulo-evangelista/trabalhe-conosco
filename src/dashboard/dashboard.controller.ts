@@ -25,8 +25,8 @@ export class DashboardController {
     return this.dashboardService.pizzaGraphByCrop();
   }
 
-  // @Get('pizza-graph-by-use')
-  // pizzaGraphByUse() {
-  //   return this.dashboardService.pizzaGraphByUse();
-  // }
+  @Get('pizza-graph-by-use')
+  pizzaGraphByUse() {
+    return this.dashboardService.pizzaGraphByUse();
+  }
 }

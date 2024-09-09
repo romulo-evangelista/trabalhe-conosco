@@ -51,6 +51,21 @@ export class DashboardService {
     return pizzaGraphByKey;
   }
 
+  private getUsedAreaPizzaGraph(farmers: Farmer[]) {
+    const pizzaGraph: { [key: string]: number } = {};
+
+    farmers.forEach((farmer) => {
+      const byKey = farmer.documentNumber;
+      if (!pizzaGraph[byKey]) {
+        pizzaGraph[byKey] = 0;
+      }
+
+      pizzaGraph[byKey] += farmer.arableTotalArea + farmer.vegetationArea;
+    });
+
+    return pizzaGraph;
+  }
+
   async pizzaGraphByState() {
     const allFarmers: Farmer[] = await this.farmerService.findAll();
     return this.getTotalAreaPizzaGraphByKey(allFarmers, 'state');
@@ -59,5 +74,10 @@ export class DashboardService {
   async pizzaGraphByCrop() {
     const allFarmers: Farmer[] = await this.farmerService.findAll();
     return this.getTotalAreaPizzaGraphByKey(allFarmers, 'crops');
+  }
+
+  async pizzaGraphByUse() {
+    const allFarmers: Farmer[] = await this.farmerService.findAll();
+    return this.getUsedAreaPizzaGraph(allFarmers);
   }
 }
