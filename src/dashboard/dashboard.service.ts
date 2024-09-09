@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Farmer } from '@prisma/client';
-import { FarmerService } from 'src/farmer/farmer.service';
+import { FarmerService } from '../farmer/farmer.service';
 
 @Injectable()
 export class DashboardService {
