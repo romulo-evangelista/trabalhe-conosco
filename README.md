@@ -1,3 +1,25 @@
+# Como executar?
+
+Execute o comando `docker compose up -d` para iniciar os containers da aplicação.
+
+Agora você pode acessar os endpoints do projeto. Todos os endpoints existentes estarão disponíveis em: `http://localhost:3000/docs` quando a aplicação estiver em execução.
+
+Exemplos:
+`http://localhost:3000/farmer` para listar os Produtores Rurais.
+`http://localhost:3000/dashboard/total-farms` para listar a quantidade total de fazendas.
+
+# Escolhas do projeto
+
+Escolhi o [**NestJS**](https://nestjs.com/) como layer do backend e o [**Prisma**](https://www.prisma.io/) como ORM não só pela familiaridade com o framework, mas também pela consistência destas ferramentas no mercado.
+
+Para os dados "mockados" decidi seguir com as seeds do próprio Prisma e o [faker](https://fakerjs.dev/) como biblioteca para geração de dados.
+
+# Sobre os testes
+
+Gostaria de ter implementado testes unitários e end-to-end (e2e).
+
+Meu plano seria utilizar o [jest](https://jestjs.io/pt-BR/) como biblieteca de testes unitários e o [supertest](https://www.npmjs.com/package/supertest) para testes e2e.
+
 # Teste - Brain Agriculture
 
 O teste tem como objetivo acurar as habilidades do candidato em resolver alguns problemas relacionados à lógica de programação, regra de negócio e orientação à objetos.
